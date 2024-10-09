@@ -15,4 +15,7 @@ public class FlashCard {
         this.flashCards = flashCards;
     }
 
+    public FlashCardSet get(String key) {
+        return flashCards.get(key);
+    }
 }
