@@ -62,18 +62,14 @@ public class Parser {
         if (matcher.find()) {
             String moduleName = matcher.group(1);
             String topic = matcher.group(2);
-            if (!moduleName.contains("--m")) {
-                FlashCardSet module = FlashBook.getInstance().getFlashCardSet(moduleName);
-                String question = matcher.group(3);
-                String answer = matcher.group(4);
-                if (topic == null) {
-                    topic = "";
-                } 
-                assert !(module == null || question == null || answer == null);
-                return new AddCommand(module, new Card(question, answer, topic));
-            } else {
-                throw new IllegalArgumentException("Please enter a valid module name"); 
+            FlashCardSet module = FlashBook.getInstance().getFlashCardSet(moduleName);
+            String question = matcher.group(3);
+            String answer = matcher.group(4);
+            if (topic == null) {
+                topic = "";
             }
+            assert !(module == null || question == null || answer == null);
+            return new AddCommand(module, new Card(question, answer, topic));
         } else {
             return new InvalidCommand();
         }

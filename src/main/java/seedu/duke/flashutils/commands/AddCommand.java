@@ -2,7 +2,6 @@ package seedu.duke.flashutils.commands;
 
 import seedu.duke.flashutils.types.Card;
 import seedu.duke.flashutils.types.FlashCardSet;
-import seedu.duke.flashutils.utils.Ui;
 
 /**
  * Adds a flashcard to flashcard set.
@@ -27,11 +26,6 @@ public class AddCommand extends Command {
         if (module == null || question == null || answer == null) {
             throw new NullPointerException();
         }
-        
-        String currentModuleName = module.getModuleName(); 
-        if (currentModuleName.contains("--m") || currentModuleName.trim().isEmpty()) {
-            throw new IllegalArgumentException();
-        }
 
         cardToAdd = new Card(question, answer);
         this.targetSet = module;
@@ -44,11 +38,6 @@ public class AddCommand extends Command {
      * @param module 
      */
     public AddCommand(FlashCardSet module, Card cardToAdd) {
-        String currentModuleName = module.getModuleName(); 
-        if (currentModuleName.contains("--m") || currentModuleName.trim().isEmpty()) {
-            throw new IllegalArgumentException("Please enter a valid module name");
-        }
-
         this.cardToAdd = cardToAdd;
         this.targetSet = module;
     }
